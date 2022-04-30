@@ -16,7 +16,11 @@
      
 RCSwitch mySwitch;
  
-
+void Usage()
+{
+	fprintf(stderr,"Usage:RFSniffer GPIO-Pin Pulse-Length\n");
+	exit(1);
+}
 
 int main(int argc, char *argv[]) {
   
@@ -30,8 +34,12 @@ int main(int argc, char *argv[]) {
        return 0;
      }
 
+     if (argv[1] != NULL) PIN = atoi(argv[1]);
+
      int pulseLength = 0;
-     if (argv[1] != NULL) pulseLength = atoi(argv[1]);
+     if (argv[2] != NULL) pulseLength = atoi(argv[2]);
+
+     printf("GPIO Pin:%d, PulseLength:%d\n", PIN, pulseLength );
 
      mySwitch = RCSwitch();
      if (pulseLength != 0) mySwitch.setPulseLength(pulseLength);
